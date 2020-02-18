@@ -67,7 +67,7 @@ public class DriverScript {
 			FunctionLibrary.CapturingData(driver, Locator_Type, Locator_Value);
 			test.log(LogStatus.INFO, "Caputring SupplierNumber");
 		}else if(Function_Name.equals("tableValidation")){
-		FunctionLibrary.tableValidation(driver);
+		FunctionLibrary.tableValidation(driver, Test_Data);
 			test.log(LogStatus.INFO, "Table Validation is done");
 		}
 		el.SetCellData(TCModlue, j, 5, "Pass");

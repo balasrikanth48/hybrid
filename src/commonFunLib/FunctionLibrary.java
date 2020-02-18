@@ -1,5 +1,6 @@
 package commonFunLib;
 
+import java.awt.List;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -11,12 +12,14 @@ import java.util.Date;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import com.gargoylesoftware.htmlunit.javascript.host.file.FileReader;
 
@@ -178,7 +181,7 @@ public class FunctionLibrary
 	 br.flush();br.close();
 
 }
-   public static void tableValidation(WebDriver driver) throws IOException
+   public static void tableValidation(WebDriver driver,String colomn) throws IOException, InterruptedException
    {
 	   java.io.FileReader fr=new java.io.FileReader("E:\\Srikanth_82\\HybridFrameWork\\CaptureData\\SupplierData.txt");
 	   BufferedReader br=new BufferedReader(fr);
@@ -190,10 +193,21 @@ public class FunctionLibrary
 		   
 	   }else
 	   {
-		   driver.findElement(By.id(PropertyFileUtil.getValueForKey("Searchkey"))).click();
+		   driver.findElement(By.xpath(PropertyFileUtil.getValueForKey("Searchkey"))).click();
+		   Thread.sleep(2000);
 		   driver.findElement(By.id(PropertyFileUtil.getValueForKey("Search"))).sendKeys(Exp_data);
-			driver.findElement(By.id(PropertyFileUtil.getValueForKey("Searchbutton"))).click();
+			driver.findElement(By.id(PropertyFileUtil.getValueForKey("Searchbuttoon"))).click();
 	   }
+	   WebElement table=driver.findElement(By.id(PropertyFileUtil.getValueForKey("table")));
+	    java.util.List<WebElement> rows=driver.findElements(By.tagName("tr"));
+	    for (int i = 1; i < rows.size(); i++) 
+	    {
+			String act_data=driver.findElement(By.xpath("//table[@id='tbl_a_supplierslist']/tbody/tr["+i+"]/td["+colomn+"]/div/span")).getText();
+			Assert.assertEquals(act_data, Exp_data);
+			System.out.println(act_data+"  "+Exp_data);
+			break;
+		}
+	   
 	   
 	   
 	   
