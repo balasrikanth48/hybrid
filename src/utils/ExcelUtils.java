@@ -67,7 +67,7 @@ Workbook wb;
 			style.setFont(font);
 			cell.setCellStyle(style);
 			
-		}else if  (Status.equalsIgnoreCase("Not Excuted"))
+		}else if  (Status.equalsIgnoreCase("NotExcuted"))
         {
 			CellStyle style=wb.createCellStyle();
 			org.apache.poi.ss.usermodel.Font font=wb.createFont();

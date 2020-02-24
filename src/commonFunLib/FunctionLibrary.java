@@ -178,7 +178,8 @@ public class FunctionLibrary
 	 FileWriter fr=new FileWriter("E:\\Srikanth_82\\HybridFrameWork\\CaptureData\\SupplierData.txt");
 	 BufferedWriter br=new BufferedWriter(fr);
 	 br.write(SupplierData);
-	 br.flush();br.close();
+	 br.flush();
+	 br.close();
 
 }
    public static void tableValidation(WebDriver driver,String colomn) throws IOException, InterruptedException

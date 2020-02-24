@@ -76,13 +76,18 @@ public class DriverScript {
 	}catch(Exception e)
 	{
 		
+		
 		 e.printStackTrace();
 		 System.out.println("the exceptions is "+ e);
 		el.SetCellData(TCModlue, j, 5,"Fail");
 		ModuleStatus="Fail";
+		String reqdate=FunctionLibrary.getdate();
 		File sf= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(sf,new File("E:\\Srikanth_82\\HybridFrameWork\\ScreenShots\\"+Description+FunctionLibrary.getdate()+".png"));
+		FileUtils.copyFile(sf,new File("E:\\Srikanth_82\\HybridFrameWork\\ScreenShots\\"+Description+reqdate+".png"));
 		test.log(LogStatus.FAIL, Description);
+		Thread.sleep(5000);
+		test.log(LogStatus.INFO, test.addScreenCapture("E:\\Srikanth_82\\HybridFrameWork\\ScreenShots\\"+Description+reqdate+".png"));
+		
 		break;
 	      }
 		 }
